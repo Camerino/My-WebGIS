@@ -1,0 +1,31 @@
+                         List of relations
+ Schema  |               Name                |   Type   |  Owner   
+---------+-----------------------------------+----------+----------
+ django  | auth_group                        | table    | alim
+ django  | auth_group_id_seq                 | sequence | alim
+ django  | auth_group_permissions            | table    | alim
+ django  | auth_group_permissions_id_seq     | sequence | alim
+ django  | auth_permission                   | table    | alim
+ django  | auth_permission_id_seq            | sequence | alim
+ django  | auth_user                         | table    | alim
+ django  | auth_user_groups                  | table    | alim
+ django  | auth_user_groups_id_seq           | sequence | alim
+ django  | auth_user_id_seq                  | sequence | alim
+ django  | auth_user_user_permissions        | table    | alim
+ django  | auth_user_user_permissions_id_seq | sequence | alim
+ django  | django_admin_log                  | table    | alim
+ django  | django_admin_log_id_seq           | sequence | alim
+ django  | django_content_type               | table    | alim
+ django  | django_content_type_id_seq        | sequence | alim
+ django  | django_migrations                 | table    | alim
+ django  | django_migrations_id_seq          | sequence | alim
+ django  | django_session                    | table    | alim
+ geodata | bikeways                          | table    | alim
+ geodata | bikeways_ogc_fid_seq              | sequence | alim
+ public  | geography_columns                 | view     | postgres
+ public  | geometry_columns                  | view     | postgres
+ public  | raster_columns                    | view     | postgres
+ public  | raster_overviews                  | view     | postgres
+ public  | spatial_ref_sys                   | table    | postgres
+(26 rows)
+
