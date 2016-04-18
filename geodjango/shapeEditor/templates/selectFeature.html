@@ -10,6 +10,46 @@
 		</style>
 		<script src="http://openlayers.org/api/OpenLayers.js"></script>
 		<script type="text/javascript">
+		    OpenLayers.Control.Click = OpenLayers.Class(
+		      OpenLayers.Control, {
+		          defaultHandlerOptions: {
+		            'single': true,
+		            'double': false,
+		            'pixelTolerance': 0,
+		            'stopSingle': false,
+		            'stopDouble': false
+		            },
+		            initialize: function(options){
+		              this.handlerOptions = OpenLayers.Util.extend(
+		                {}, this.defaultHandlerOptions);
+		              OpenLayers.Control.prototype.initialize.apply(
+		                this, arguments);
+		              this.handler = new OpenLayers.Handler.Click(
+		                this, {'click' : this.onClick}, this.handlerOptions);
+		                },
+		             onClick: function(e) {
+		               var coord = map.getLonLatFromViewPortPx(e.xy);
+		               var request = OpenLayers.Request.GET({
+		                   url : "{{ findFeatureURL }}",
+		                   params : {shapefile_id : {{ shapefile.id }},
+		                             latitude : coord.lat,
+		                             longitude : coord.lon},
+		                   callback : this.handleResponse
+
+		                   });
+
+		                },
+				      handleResponse: function(request){
+						if (request.status != 200){
+						  alert("Server returned a "+request.status+" error");
+						  return;
+						};
+						if (request.responseText != ""){
+						  window.location.href = request.responseText;
+						};  
+					    },
+		                }
+		                );
 			function init() {
 				map = new OpenLayers.Map('map',
 										 {maxResolution: 0.703125,
@@ -21,6 +61,9 @@
 												  type: 'png'});
 				map.addLayer(layer);
 				map.zoomToMaxExtent();
+				var click = new OpenLayers.Control.Click();
+				map.addControl(click);
+				click.activate();
 			}
 		</script>
 	</head>
@@ -31,6 +74,10 @@
 		<div id="map" class="map"></div>
 		<br/>
 		<div style="margin-left:20px">
+			<button type="button"
+	          onClick='window.location="{{ addFeatureURL }}";'>
+			  Add Feature
+			</button>
 			<button type="button"
 					onClick='window.location="/shape-editor";'>
 				Cancel

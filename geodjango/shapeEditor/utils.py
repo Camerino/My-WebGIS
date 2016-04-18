@@ -1,5 +1,9 @@
 from osgeo import ogr
 from django.contrib.gis.geos.collections import MultiPolygon, MultiLineString
+import pyproj
+from django import forms
+from django.contrib.gis import admin
+from models import Feature
 
 def ogrTypeToGeometryName(ogrType):
 	return {ogr.wkbUnknown : 'Unknown',
@@ -136,6 +140,59 @@ def setOGRFeatureAttribute(attr, value, feature, encoding):
 		tzone = int(parts[6])
 		feature.SetField(attrName, year, month, day, 
 						 hour, minute, second, tzone)
+		
+def calcSearchRadius(latitude, longitude, distance):
+	geod = pyproj.Geod(ellps='WGS84')
+	
+	x,y,angle = geod.fwd(longitude, latitude, 0, distance)
+	radius = y-latitude
+	
+	x,y,angle = geod.fwd(longitude, latitude, 90, distance)
+	radius = max(radius, x-longitude)
+	
+	x,y,angle = geod.fwd(longitude, latitude, 180, distance)
+	radius = max(radius, latitude-y)
+	
+	x,y,angle = geod.fwd(longitude, latitude, 270, distance)
+	radius = max(radius, longitude-x)
+	
+	return radius
+	
+def getMapForm(shapefile):
+	geometryField = calcGeometryField(shapefile.geom_type)
+	
+	adminInstance = admin.GeoModelAdmin(Feature, admin.site)
+	field = Feature._meta.get_field(geometryField)
+	widgetType = adminInstance.get_map_widget(field)
+	
+	class MapForm(forms.Form):
+		geometry = forms.Charfield(widget=widgetType(),
+								  label="")
+	return MapForm
+	
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 		
 	

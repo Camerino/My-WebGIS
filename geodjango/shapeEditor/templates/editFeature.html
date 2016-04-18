@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<title>ShapeEditor</title>
+		<script src="http://openlayers.org/api/OpenLayers.js"></script>
+	</head>
+	<body>
+		<h1>Edit Feature</h1>
+		<form method="POST" action="">
+			<table>
+				<tr>
+					<td></td>
+					<td align="right">
+						<input type="submit" name="delete"
+							   value="Delete Feature"/>
+					</td>
+				</tr>
+				{{ form.as_table}}
+				<tr>
+					<td></td>
+					<td align="right">
+						<table>
+							{% for attr in attributes %}
+							<tr>
+								<td>{{ attr.0 }}</td>
+								<td>{{ attr.1 }}</td>
+							</tr>
+							{% endfor %}
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td align="center">
+						<input type="submit" value="Save"/>
+						&nbsp;
+						<button type="button"
+				onClick='window.location="/shape-editor/edit/{{ shapefile.id }}";'>Cancel</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
