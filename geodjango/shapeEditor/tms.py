@@ -93,6 +93,7 @@ def tileMap(request, version, shapefile_id):
 
 
 def tile(request, version, shapefile_id, zoom, x, y):
+	shapefile = None
 	try:
 		if version != "1.0":
 			raise Http404
@@ -110,14 +111,14 @@ def tile(request, version, shapefile_id, zoom, x, y):
 		xExtent = _unitsPerPixel(zoom) * TILE_WIDTH
 		yExtent = _unitsPerPixel(zoom) * TILE_HEIGHT
 		
-		#minLong = x * xExtent - 180.0
-		#minLat = y * yExtent - 90.0
-		#maxLong = minLong + xExtent
-		#maxLat = minLat + yExtent
+		minLong  = xExtent * x - 180.0
+		minLat   = yExtent * y -  90.0
+		maxLong  = minLong + xExtent
+		maxLat   = minLat  + xExtent
 	
-		#if (minLong < -180 or maxLong > 180 or 
-		#	minLat < -90 or maxLat > 90):
-		#	raise Http404
+		if (minLong < -180 or maxLong > 180 or 
+			minLat < -90 or maxLat > 90):
+			raise Http404
 			
 		map = mapnik.Map(TILE_WIDTH, TILE_HEIGHT,
 						"+proj=longlat +datum=WGS84")
@@ -175,7 +176,7 @@ def tile(request, version, shapefile_id, zoom, x, y):
 		
 		map.append_style("featureLayerStyle", style)
 		map.layers.append(featureLayer)
-		map.zoom_to_box(mapnik.Envelope(35, 32, +36, +38))
+		map.zoom_to_box(mapnik.Envelope(minLong, minLat, maxLong, maxLat))
 		image = mapnik.Image(TILE_WIDTH, TILE_HEIGHT)
 		mapnik.render(map, image)
 		imageData = image.tostring('png')

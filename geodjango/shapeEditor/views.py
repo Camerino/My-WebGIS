@@ -72,14 +72,11 @@ def findFeature(request):
         elif shapefile.geom_type in ["LineString", "MultiLineString"]:
             query = Feature.objects.filter ( geom_multilinestring__dwithin =( pt, radius))
         elif shapefile.geom_type in ["Polygon", "MultiPolygon"]:
-            query = Feature.objects.filter(
-                geom_multipolygon__dwithin(pt, radius))
+            query = Feature.objects.filter(geom_multipolygon__dwithin =(pt, radius))
         elif shapefile.geom_type == "MultiPoint":
-            query = Feature.objects.filter(
-                geom_multipoint__dwithin(pt, radius))
+            query = Feature.objects.filter(geom_multipoint__dwithin =(pt, radius))
         elif shapefile.geom_type == "GeometryCollection":
-            query = Feature.objects.filter(
-                geom_geometrycollection__dwithin(pt, radius))
+            query = Feature.objects.filter(geom_geometrycollection__dwithin =(pt, radius))
         else:
             print "Unsupported geometry: "+ shapefile.geom_type
             return HttpResponse("")
@@ -111,37 +108,37 @@ def editFeature(request, shapefile_id, feature_id=None):
         except Feature.DoesNotExist:
             raise Http404
         
-        attributes = []
-        for attrValue in feature.attributevalue_set.all():
-            attributes.append([attrValue.attribute.name,
+    attributes = []
+    for attrValue in feature.attributevalue_set.all():
+        attributes.append([attrValue.attribute.name,
                                attrValue.value])
-        attributes.sort()
+    attributes.sort()
         
-        geometryField = utils.calcGeometryField(shapefile.geom_type)
-        formType = utils.getMapForm(shapefile)
+    geometryField = utils.calcGeometryField(shapefile.geom_type)
+    formType = utils.getMapForm(shapefile)
         
-        if request.method == "GET":
-            wkt = getattr(feature, geometryField)
-            form = formType({'geometry' : wkt})
-            return render_to_response("editFeature.html",
-                                     {'shapefile' : shapefile,
-                                      'form' : form,
-                                      'attributes' : attributes})
-        elif request.method == "POST":
-            form = formType(request.POST)
-            try:
-                if form.is_valid():
-                    wkt = form.clean_data['geometry']
-                    setattr(feature, geometryField, wkt)
-                    feature.save()
-                    return HttpResponseRedirect("/shape-editor/edit/" + 
+    if request.method == "GET":
+        wkt = getattr(feature, geometryField)
+        form = formType({'geometry' : wkt})
+        return render_to_response("editFeature.html",
+                                 {'shapefile' : shapefile,
+                                  'form' : form,
+                                  'attributes' : attributes})
+    elif request.method == "POST":
+        form = formType(request.POST)
+        try:
+            if form.is_valid():
+                wkt = form.cleaned_data['geometry']
+                setattr(feature, geometryField, wkt)
+                feature.save()
+                return HttpResponseRedirect("/shape-editor/edit/" + 
                                                shapefile_id)
-            except ValueError:
-                pass
-            return ender_to_response("editFeature.html",
-                                     {'shapefile' : shapefile,
-                                      'form' : form,
-                                      'attributes' : attributes})
+        except ValueError:
+            pass
+        return ender_to_response("editFeature.html",
+                                 {'shapefile' : shapefile,
+                                  'form' : form,
+                                  'attributes' : attributes})
         
 def deleteFeature(request, shapefile_id, feature_id):
     try:

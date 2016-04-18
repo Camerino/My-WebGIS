@@ -166,7 +166,7 @@ def getMapForm(shapefile):
 	widgetType = adminInstance.get_map_widget(field)
 	
 	class MapForm(forms.Form):
-		geometry = forms.Charfield(widget=widgetType(),
+		geometry = forms.CharField(widget=widgetType(),
 								  label="")
 	return MapForm
 	
