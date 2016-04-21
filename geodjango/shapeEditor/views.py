@@ -7,6 +7,9 @@ import shapefileIO
 import traceback
 import utils
 
+def homePage(request):
+    return render_to_response("base.html", {})
+
 
 def listShapefiles(request):
     shapefiles = Shapefile.objects.all().order_by('filename')
@@ -135,7 +138,7 @@ def editFeature(request, shapefile_id, feature_id=None):
                                                shapefile_id)
         except ValueError:
             pass
-        return ender_to_response("editFeature.html",
+        return render_to_response("editFeature.html",
                                  {'shapefile' : shapefile,
                                   'form' : form,
                                   'attributes' : attributes})

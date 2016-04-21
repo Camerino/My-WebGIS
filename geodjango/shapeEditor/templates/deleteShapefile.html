@@ -1,9 +1,8 @@
-<html>
-	<head>
-		<title>ShapeEditor</title>
-	</head>
-	<body>
-		<h1>Delete Shapefile</h1>
+{% extends parent_template|default:"base.html" %}
+
+{% block content %}
+<div id="delete">
+		<h2>Delete Shapefile</h2>
 		<form method="POST">
 		Are you sure you want to delete the
 		"{{ shapefile.filename }}" shapefile?
@@ -12,5 +11,5 @@
 		&nbsp;
 	    <button type="submit" name="confirm" value="0">Cancel</button>	
 		</form>	
-	</body>
-</html>
+</div>
+{% endblock %}

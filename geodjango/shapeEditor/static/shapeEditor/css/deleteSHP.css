@@ -1,0 +1,29 @@
+@charset "UTF-8";
+<style>
+    #delete {
+    	margin:0 auto;
+        padding: 0;
+        position: relative;
+        width: 860px;
+    }
+
+     #delete h1 {
+        margin:0 auto;
+        padding: 0;
+        position: relative;
+        width: 860px;
+        
+    }
+
+    #delete form {
+    	margin:0 auto;
+        padding: 0;
+        position: relative;
+        width: 860px;
+    }
+
+
+
+    
+
+</style>

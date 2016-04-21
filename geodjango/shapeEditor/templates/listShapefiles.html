@@ -1,11 +1,26 @@
-<html>
-    <head>
-        <title>ShapeEditor</title>
+{% extends parent_template|default:"base.html" %}
+
+
+    {% block content %}
+<head>
+		<style type="text/css">
+
+		    div#wrapper2 {
+		    	width: 860px;
+			    height: 600px;
+			    margin: 0 auto;
+
+		    }
+
+
+		</style>
     </head>
-    <body>
-        <h1>ShapeEditor</h1>
+
+    <div id="wrapper2">
         {% if shapefiles %}
-        <b>Available Shapefiles:</b>
+        <div id="table" class="table">
+        <h2>Available Shapefiles:</h2>
+        
         <table border="0" cellspacing="0" cellpadding="5"
             style="padding-left:20px">
             {% for shapefile in shapefiles %}
@@ -33,9 +48,15 @@
             {% endfor %}
         </table>
         {% endif %}
-        <button type="button"
+        </div>
+        </br>
+        <div style="margin: 0 auto">
+        <button type="button "
             onClick='window.location="/shape-editor/import";'>
             Import New Shapefile
         </button>
-    </body>
-</html>
+        </div>
+        </div>
+        
+    {% endblock %}
+    

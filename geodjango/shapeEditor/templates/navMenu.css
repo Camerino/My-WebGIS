@@ -1,0 +1,99 @@
+@charset "UTF-8";
+<style>
+
+    /* rules for navigation menu */
+    /* ==================================================================== */
+
+      #navMenu {
+        margin: 0 auto;
+   
+        position:relative;
+
+    }
+
+      #navMenu ul {
+        margin: 0 auto;
+      
+        height: 60px;
+
+    }
+
+     #navMenu li {
+
+        margin: 0 auto;
+     
+        height: 60px;
+        list-style-type: none;
+        float: left;
+        position: relative;
+        background: #999;
+        }
+
+
+     #navMenu ul li a {
+        text-align:center;
+        font-family: "Comic Sans MS";
+        text-decoration: none;
+        height: 30px;
+        width: 170px;
+        display: block;
+        color: #FFF;
+        border: 1px solid #FFF;
+        text-shadow: 1px 1px 1px #000;
+    }
+
+    ul#menu-main-menu .sub-menu a {
+        width: 700px;
+
+    }
+
+    #navMenu ul ul {
+        position: absolute;
+        visibility: hidden;
+        top: 32px;
+    }
+
+    #navMenu ul li img {
+        vertical-align: middle;
+
+    }
+
+    #navMenu ul li:hover ul {
+        visibility: visible;
+    }
+
+    #navMenu li:hover {
+        background:#09F;
+    }
+
+    #navMenu ul li:hover ul li a:hover{
+        background: #CCC;
+        color:#000;
+    }
+
+    #navMenu a:hover {
+        color: #000;
+    }
+
+    .clearFloat {
+        clear: both;
+        margin: 0;
+        padding: 0;
+    }
+
+  /* rules for slides show */
+    /* ==================================================================== */
+
+
+ #slides img {
+ 	width: 856px;
+	height: 600px;
+	border: 2px solid #009;
+
+ #welcome p {
+ 	width: 856;
+
+
+	}
+
+</style>

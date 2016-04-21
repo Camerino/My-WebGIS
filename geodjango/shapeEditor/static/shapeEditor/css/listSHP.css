@@ -1,0 +1,41 @@
+@charset "UTF-8";
+<style>
+
+    #table {
+    	margin:0 auto;
+        padding: 0;
+        position: relative;
+        width: 860px;
+    }
+
+     #table b {
+        margin:0 auto;
+        padding: 0;
+        position: relative;
+        width: 860px;
+        
+    }
+
+    #table table {
+    	margin:0 auto;
+        padding: 0;
+        position: relative;
+        width: 860px;
+    }
+
+     #table table tr {
+        margin:0 auto;
+        padding: 0;
+        position: relative;
+        
+
+    }
+
+     #table table tr td {
+        margin:0 auto;
+        padding: 0;
+        position: relative;
+    }
+  
+
+</style>

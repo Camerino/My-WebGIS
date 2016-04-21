@@ -1,0 +1,112 @@
+@charset "UTF-8";
+<style>
+
+    /* rules for navigation menu */
+    /* ==================================================================== */
+   
+         h1 {
+        margin:0 auto;
+        text-align: center;
+        width: 860px;
+    }
+
+
+      #navMenu {
+        margin:0 auto;
+        padding: 0;
+        position: relative;
+        width: 860px;
+        
+
+    }
+
+      #navMenu ul {
+        margin: 0 auto;
+        padding: 0 ;
+    
+        height: 30px;
+
+    }
+
+     #navMenu li {
+
+        margin: 0 auto;
+        padding: 0;
+        height: 30px;
+        list-style-type: none;
+        float: left;
+        position: relative;
+        background: #999;
+        }
+
+
+     #navMenu ul li a {
+        text-align:center;
+        font-family: "Comic Sans MS";
+        text-decoration: none;
+        height: 30px;
+        width: 170px;
+        display: block;
+        color: #FFF;
+        border: 1px solid #FFF;
+        text-shadow: 1px 1px 1px #000;
+    }
+
+    ul#menu-main-menu .sub-menu a {
+        width: 300px;
+
+    }
+
+    #navMenu ul ul {
+        position: absolute;
+        visibility: hidden;
+        top: 32px;
+    }
+
+    #navMenu ul li img {
+        vertical-align: middle;
+
+    }
+
+    #navMenu ul li:hover ul {
+        visibility: visible;
+    }
+
+    #navMenu li:hover {
+        background:#09F;
+    }
+
+    #navMenu ul li:hover ul li a:hover{
+        background: #CCC;
+        color:#000;
+    }
+
+    #navMenu a:hover {
+        color: #000;
+    }
+
+    .clearFloat {
+        clear: both;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+
+    #main p {
+        margin:0 auto;
+        max-width: 860px;
+
+    }
+
+      h2 {
+        margin:0 auto;
+        text-align: center;
+        width: 860px;
+    }
+
+	#main img {
+        margin:0 auto;
+        width: 100px;
+    }
+
+</style>

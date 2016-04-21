@@ -1,7 +1,20 @@
-<html>
-	<head>
-		<title>ShapeEditor</title>
-	</head>
+{% extends parent_template|default:"base.html" %}
+
+    {% block content %}
+<head>
+<style type="text/css">
+	div#del {
+		    	width: 860px;
+			    height: 600px;
+			    margin: 0 auto;
+
+		    }
+
+</style>
+	<div id="del">
+
+
+</head>
 	<body>
 		<h1>Delete Feature</h1>
 		<form method="POST">
@@ -15,3 +28,5 @@
 		</form>
 	</body>
 </html>
+</div>
+{% endblock %}

@@ -1,12 +1,24 @@
-<html>
+{% extends parent_template|default:"base.html" %}
+
+    {% block content %}
+
 	<head>
-		<title>ShapeEditor</title>
 		<style type="text/css">
+
+		    div#mapFrame {
+		    	width: 860px;
+			    height: 600px;
+			    margin: 0 auto;
+
+		    }
+
 			div#map {
-			  width: 600px;
-			  height: 400px;
+			  width: 860px;
+			  height: 600px;
 			  border: 1px solid;
 			}
+
+
 		</style>
 		<script src="http://openlayers.org/api/OpenLayers.js"></script>
 		<script type="text/javascript">
@@ -67,13 +79,14 @@
 			}
 		</script>
 	</head>
+<div id="edit">
 	<body onload="init()">
-		<h1>Edit Shapefile</h1>
-		<b>Please choose a feature to edit</b>
+		<h2>Please choose a feature to edit</h2>
 		<br/>
+		<div id="mapFrame">
 		<div id="map" class="map"></div>
 		<br/>
-		<div style="margin-left:20px">
+		<div style="margin-left: 20px">
 			<button type="button"
 	          onClick='window.location="{{ addFeatureURL }}";'>
 			  Add Feature
@@ -82,6 +95,9 @@
 					onClick='window.location="/shape-editor";'>
 				Cancel
 			</button>
+		</div>
 		</div>	
 	</body>
-</html>
+</div>
+
+{% endblock %}

@@ -18,8 +18,11 @@ from django.contrib.gis import admin
 from shapeEditor import views
 from shapeEditor import tms
 admin.autodiscover()
+from .views import redirect_root
 
 urlpatterns = [
+	url(r'^$', redirect_root),
+	url(r'^home$', views.homePage, name="homePage"),
     url(r'^shape-editor$', views.listShapefiles, name="listShapefiles"),
     url(r'^admin/', admin.site.urls),
 	url(r'^shape-editor/import$', views.importShapefile, name="importShapefile"),

@@ -1,10 +1,21 @@
-<html>
-	<head>
-		<title>ShapeEditor</title>
-		<script src="http://openlayers.org/api/OpenLayers.js"></script>
-	</head>
+{% extends parent_template|default:"base.html" %}
+
+    {% block content %}
+<head>
+<style type="text/css">
+	div#feature {
+		    	width: 860px;
+			    height: 600px;
+			    margin: 0 auto;
+
+		    }
+
+
+</style>
+</head>
+<div id="feature">
 	<body>
-		<h1>Edit Feature</h1>
+		<h2>Edit Feature</h2>
 		<form method="POST" action="">
 			<table>
 				<tr>
@@ -40,4 +51,5 @@
 			</table>
 		</form>
 	</body>
-</html>
+</div>
+{% endblock %}

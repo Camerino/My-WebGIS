@@ -1,9 +1,9 @@
-<html>
-	<head>
-		<title>ShapeEditor</title>
-	</head>
-	<body>
-		<h1>Import Shapefile</h1>
+{% extends parent_template|default:"base.html" %}
+
+	{% block content %}
+   <div id="form" class="form">
+    <h2>Import Shapefile</h2>
+
 		{% if errMsg %}
 		<b><i>{{ errMsg }}</i></b>
 		{% endif %}
@@ -12,10 +12,11 @@
 			{{ form.as_p }}
 			<input type="submit" value="Submit"/>
 			<button type="button"
-					onClick='window.location="shape-editor";'>
+					onClick='window.location="/shape-editor";'>
 				Cancel
 			</button>
 		</form>
+    </div>
+
 		
-	</body>
-</html>
+	{% endblock %}

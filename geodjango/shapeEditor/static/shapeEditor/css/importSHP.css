@@ -1,0 +1,19 @@
+@charset "UTF-8";
+<style>
+    #form {
+    	margin:0 auto;
+        padding: 0;
+        position: relative;
+        width: 860px;
+    }
+
+    #form form {
+    	margin:0 auto;
+        padding: 0;
+        position: relative;
+        width: 860px;
+
+    }
+
+
+</style>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marine Habitat Mapping</title>
+    {% load staticfiles %}
+    <link type="text/css" rel="stylesheet" href="{% static 'shapeEditor/css/navMenu.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'shapeEditor/css/js-image-slider.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'shapeEditor/css/importSHP.css' %}"/>
+
+    <link type="text/css" rel="stylesheet" href="{% static 'shapeEditor/css/deleteSHP.css' %}"/>
+
+    <script src="{% static 'shapeEditor/js/js-image-slider.js' %}"></script>
+    <script src="http://openlayers.org/api/OpenLayers.js"></script>
+
+     <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+</head>
+<style type="text/css">
+    h1 {
+        margin:0 auto;
+        text-align: center;
+        width: 860px;
+    }
+   #sliderFrame 
+{
+    position:relative;
+    width:860px;
+    height: 600px;
+    margin:0 auto; /*center-aligned*/
+}
+
+ #slider, #slider div.sliderInner {
+    width:860px;height:600px;/* Must be the same size as the slider images */
+
+</style>
+<body id="home" class="home blog custom-background chrome et_includes_sidebar">
+<h1>WebGIS For Marine Habitat Mapping</h1>
+
+<div id="wrapper">
+<div id="navMenu">
+<ul id="menu-main-menu" class="nav">
+    <li id="menu-item-1" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1">
+        <a href="/home">Home</a></li>
+    <li id="menu-item-2" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2">
+        <a href="http://www.webgis.net/wordpress/index.php/gis-team/">Marine Habitats <img src="{% static 'shapeEditor/img/arrow.png' %}" /></a>
+    <ul class="sub-menu">
+	<li id="menu-item-21" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-21">
+        <a href="http://www.webgis.net/wordpress/index.php/what-is-gis/">What is Habitat Mapping?</a></li>
+    <li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-22">
+        <a href="">How to Map Habitats?</a></li>
+        <li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-23">
+        <a href="">Habitat Mapping Schemes</a></li>
+    </ul></li>
+    <li id="menu-item-3" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3">
+        <a href="">Mapping Techniques <img src="{% static 'shapeEditor/img/arrow.png' %}" /></a>
+    <ul class="sub-menu">
+        <li id="menu-item-31" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-31">
+            <a href="">Single-Beam Echosounder</a>
+        </li>
+         <li id="menu-item-32" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-32">
+            <a href="">Multi-Beam Echosounder</a>
+        </li>
+        <li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-33">
+            <a href="">Side-Scan Sonar</a>
+        </li>
+        <li id="menu-item-34" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-34">
+            <a href="">Subbottom Profiler</a>
+        </li>
+
+    </ul></li>
+    <li id="menu-item-4" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-4">
+        <a href="">Mapping Methods <img src="{% static 'shapeEditor/img/arrow.png' %}" /></a>
+        <ul class="sub-menu">
+        <li id="menu-item-41" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-41">
+            <a href="">Geo-Habitat Mapping</a>
+        </li>
+            <li id="menu-item-42" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-42">
+            <a href="">Bio-Habitat Mapping</a>
+        </li>
+            <li id="menu-item-43" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-43">
+            <a href="">Future of Marine Habitat Mapping</a>
+        </li>
+
+    </ul>
+
+    </li>
+    <li id="menu-item-5" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-5">
+        <a href="">Contact</a>
+    </li>
+    </ul>
+
+    <br class="clearFloat" />
+</div> <!-- end navMenu -->
+    </div> <!-- end wrapper div -->
+
+{% block title %}
+        
+{% endblock %}
+
+
+{% block content %}
+<div id="main">
+
+    <p>Welcome to our simple WebGIS platform for Marine Habitat Mapping. With this platform, you can import, edit, process and export your Esri shapefiles. At the moment, you can only create sediment distribution maps or so called sedimentary habitat maps as is shown in slide show below. In order to create this kind of maps, you will need to upload a shapefile containing gran size percentage values of gravel, sand and mud contents of your sediment samples. You can also upload other shapefiles to examine and make simple edits in this platform.</p>
+  
+    <h2><a href="/shape-editor">Enter WebGIS <img src="{% static 'shapeEditor/img/webGIS.jpg' %}"></a></h2>
+
+</div>
+
+&nbsp;
+&nbsp;
+
+
+<div id="sliderFrame">
+    <div id="slider">
+
+        <img id="habitat_maps1" src="{% static 'shapeEditor/img/Ergin1996_IWD.png' %}" alt="Sediment Distribution Map Produced by IWD Method" />
+        <img id="habitat_maps2" src="{% static 'shapeEditor/img/Ergin1996_Natural_neighbor.png' %}" alt="Sediment Distribution Map produced by NN Method" />
+        <img id="habitat_maps3" src="{% static 'shapeEditor/img/Tunc2008_IWD.png' %}" alt="Sediment Distribution Map Produced by IWD Method" />
+        <img id="habitat_maps4" src="{% static 'shapeEditor/img/Tunc2008_Natural_neighbor.png' %}" alt="Sediment Distribution Map produced by NN Method" />
+
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>
